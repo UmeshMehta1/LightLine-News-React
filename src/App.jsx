@@ -1,33 +1,42 @@
 import React,{useState,useEffect} from 'react'
 import axios from "axios";
-import Cards from './components/Cards';
+import News from './components/News';
+import NavBar from './components/NavBar';
 
 function App() {
    
-  const[news, setNews]=useState([])
+  const[article, setArticle]=useState([]);
+  const[category, setCategory]=useState("general");
+  const [isLoading, setIsLoading]=useState(false);
+
 
   useEffect(()=>{
     const fetchData=async()=>{
+      setIsLoading(true);
        try {
-        const response = await axios.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=1d52e78e32ee4d158c9e85e4d8813214");
+        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&apiKey=1d52e78e32ee4d158c9e85e4d8813214`);
         console.log(response)
         
         if(response.status!=200){
           <h1>Loading....</h1>
         }else{
-          setNews(response.data.articles)
+          setArticle(response.data.articles)
         }
         
        } catch (error) {
         console.log(error)
        }
+       finally{
+        setIsLoading(false)
+       }
     }
    fetchData();
-  },[]);
+  },[category]);
 
   return (
    <>
-     <Cards news={news}/>
+     <NavBar setCategory={setCategory}/>
+     <News isLoading={isLoading} article={article}/>
    </>
     
   )
