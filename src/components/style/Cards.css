@@ -1,0 +1,39 @@
+/* styles.css */
+.news-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    /* height: 200px;
+    width: 200px; */
+    margin-bottom: 20px;
+    
+  }
+
+  .cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    grid-gap: 5px;
+    background-repeat: no-repeat;
+  background-size: cover;
+  }
+  .news-card img{
+    height: 190px;
+    width: 190px;
+  }
+  
+  .news-card h2 {
+    margin-top: 0;
+  }
+  
+  .news-card p {
+    margin-bottom: 10px;
+  }
+
+  button{
+    background-color: blue;
+    height: 50px;
+    width: 75px;
+    color: white;
+    border-radius: 5px;
+  }
+  
