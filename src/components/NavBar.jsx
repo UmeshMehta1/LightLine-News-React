@@ -1,7 +1,19 @@
 import React from 'react'
 
-function NavBar({setCategory}) {
+function NavBar({setCategory, setSearchQuery,article}) {
+
+  const handleSearch = (e) => {
+    setSearchQuery(article.filter(f=>f.title.toLowerCase().includes(e.target.value)));
+  };
+
+  const handleSearchBtn=(e)=>{
+    e.preventDefault();
+
+  //  handleSearch();
+
+  }
   return (
+
     <>
      
      <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
@@ -18,34 +30,34 @@ function NavBar({setCategory}) {
         </li>
 
         <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("sports")}>Sport</a>
+          <a className="nav-link" style={{cursor:'pointer'}} onClick={()=>setCategory("sports")}>Sport</a>
         </li>        
         
         <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("entertainment")}>Entertenment</a>
+          <a className="nav-link" style={{cursor:'pointer'}} onClick={()=>setCategory("entertainment")}>Entertenment</a>
         </li>        
         
         <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("science")}>Science</a>
+          <a className="nav-link" style={{cursor:'pointer'}} onClick={()=>setCategory("science")}>Science</a>
         </li>        
         
         <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("technology")}>Technology</a>
+          <a className="nav-link" style={{cursor:'pointer'}} onClick={()=>setCategory("technology")}>Technology</a>
         </li>  
         
          <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("health")}>Health</a>
+          <a className="nav-link" style={{cursor:'pointer'}} onClick={()=>setCategory("health")}>Health</a>
         </li>  
         
         <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("business")}>Business</a>
+          <a className="nav-link" style={{cursor:'pointer'}} onClick={()=>setCategory("business")}>Business</a>
         </li>
         
       </ul>
 
       <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
+        <input className="form-control me-2" type="search" onChange={handleSearch}  placeholder="Search" aria-label="Search"/>
+        <button className="btn btn-outline-success" onClick={handleSearchBtn} type="submit">Search</button>
       </form>
       
     </div>
